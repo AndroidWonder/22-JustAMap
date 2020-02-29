@@ -42,7 +42,7 @@ public class  MapsActivity extends FragmentActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker at Bentley and move the camera
+        // Add a marker at Bentley, set title and snippet, and move the camera
         mMap.addMarker(new MarkerOptions().position(BENTLEY).title("Bentley")
               .snippet("Population 5000"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(BENTLEY, zoom));
@@ -51,9 +51,10 @@ public class  MapsActivity extends FragmentActivity implements OnMapReadyCallbac
                 new GoogleMap.OnMarkerClickListener() {
 
                     public boolean onMarkerClick(Marker m) {
+                        //get title and snippet to display on Toast
                         String title = m.getTitle();
                         String snip = m.getSnippet();
-                        Toast.makeText(getApplicationContext(), title + "\n" + snip, Toast.LENGTH_LONG).show();
+                        Toast.makeText(MapsActivity.this, title + "\n" + snip, Toast.LENGTH_LONG).show();
                         return true;
                     }
                 }
@@ -62,7 +63,7 @@ public class  MapsActivity extends FragmentActivity implements OnMapReadyCallbac
         mMap.setOnMapLongClickListener(
                 new GoogleMap.OnMapLongClickListener() {
                     public void onMapLongClick(LatLng point) {
-                        Toast.makeText(getApplicationContext(), "Long Tap", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MapsActivity.this, "Long Tap", Toast.LENGTH_LONG).show();
                     }
                 }
         );
