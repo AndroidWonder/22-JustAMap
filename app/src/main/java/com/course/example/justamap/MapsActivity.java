@@ -2,6 +2,10 @@ package com.course.example.justamap;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -60,10 +64,23 @@ public class  MapsActivity extends FragmentActivity implements OnMapReadyCallbac
                 }
         );
 
+        //let's do a fancy toast for the long tap
         mMap.setOnMapLongClickListener(
                 new GoogleMap.OnMapLongClickListener() {
                     public void onMapLongClick(LatLng point) {
-                        Toast.makeText(MapsActivity.this, "Long Tap", Toast.LENGTH_LONG).show();
+
+                        // get your custom_toast.xml layout
+                        LayoutInflater inflater = getLayoutInflater();
+
+                        View layout = inflater.inflate(R.layout.custom_toast,
+                                (ViewGroup) findViewById(R.id.custom_toast_layout_id));
+
+                        // Toast...
+                        Toast toast = new Toast(MapsActivity.this);
+                        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                        toast.setDuration(Toast.LENGTH_LONG);
+                        toast.setView(layout);
+                        toast.show();
                     }
                 }
         );
