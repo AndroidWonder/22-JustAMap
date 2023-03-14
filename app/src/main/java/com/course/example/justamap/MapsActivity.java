@@ -13,6 +13,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class  MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -49,7 +50,8 @@ public class  MapsActivity extends FragmentActivity implements OnMapReadyCallbac
         mMap.addMarker(new MarkerOptions().position(BENTLEY).title("Bentley")
               .snippet("Population 5000"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(BENTLEY, zoom));
-/*
+
+        //display a Toast when the marker is clicked
         mMap.setOnMarkerClickListener(
                 new GoogleMap.OnMarkerClickListener() {
 
@@ -62,7 +64,7 @@ public class  MapsActivity extends FragmentActivity implements OnMapReadyCallbac
                     }
                 }
         );
-*/
+
         //let's do a fancy toast for the long tap
         mMap.setOnMapLongClickListener(
                 new GoogleMap.OnMapLongClickListener() {
